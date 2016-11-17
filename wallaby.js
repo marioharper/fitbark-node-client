@@ -2,10 +2,10 @@ module.exports = function (wallaby) {
   return {
     files: [
       'src/**/*.js',
-      'test/fake-data/**/*.json'
+      'tests/unit/fake-data/**/*.json'
     ],
     tests: [
-      'test/**/*.js'
+      'tests/unit/**/*.spec.js'
     ],
     testFramework: 'mocha',
     env: {

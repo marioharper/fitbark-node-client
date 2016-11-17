@@ -1,20 +1,18 @@
-var rp = require('request-promise');
-var API_BASE = 'https://app.fitbark.com/api/v2';
+const rp = require('request-promise');
 
-function FitBarkRepo(apiToken){
+const API_BASE = 'https://app.fitbark.com/api/v2';
+
+function FitBarkRepo(apiToken) {
   this.API_TOKEN = apiToken;
 }
 
-////////////////////////////
-
-FitBarkRepo.prototype.getDogRelations = function(){
-    
-  var options = {
-    uri: API_BASE + '/dog_relations',
+FitBarkRepo.prototype.getDogRelations = function getDogRelations() {
+  const options = {
+    uri: `${API_BASE}/dog_relations`,
     headers: {
-      'authorization': 'Bearer ' + this.API_TOKEN
+      authorization: `Bearer ${this.API_TOKEN}`,
     },
-    json: true
+    json: true,
   };
 
   return rp(options);

@@ -44,11 +44,11 @@ describe('using FitBark', () => {
                     }
                 });
 
-                var FitBark = require('../src/fitBark');
+                var FitBark = require('../../src/fitBark');
                 var fitBark = new FitBark('fake');
     
                 return fitBark.getDog('julio').then((dog)=>{
-                    expect(dog).to.equal(null);
+                    expect(dog).to.equal(undefined);
                 });
             });
 
@@ -68,7 +68,7 @@ describe('using FitBark', () => {
                     }
                 });
 
-                var FitBark = require('../src/fitBark');
+                var FitBark = require('../../src/fitBark');
                 var fitBark = new FitBark('fake-token');
     
                 return fitBark.getDog('Barley').then((dog)=>{
@@ -89,7 +89,7 @@ describe('using FitBark', () => {
                 }
             });
 
-            var FitBark = require('../src/fitBark');
+            var FitBark = require('../../src/fitBark');
             var fitBark = new FitBark('fake');
   
             return fitBark.getDog('julio').then(()=>{

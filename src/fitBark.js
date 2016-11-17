@@ -1,52 +1,31 @@
-var rp = require('request-promise');
-var Promise = require('bluebird');
-var FitBarkRepo = require('./fitBarkRepo');
-var API_BASE = 'https://app.fitbark.com/api/v2';
+const FitBarkRepo = require('./fitBarkRepo');
 
-function FitBark(apiToken){
+function FitBark(apiToken) {
   this.fitBarkRepo = new FitBarkRepo(apiToken);
 }
 
-//////////////////////////////
-
-FitBark.prototype.getDog = function(dogName){
-  
+FitBark.prototype.getDog = function getDog(dogName) {
   return this.getDogs().then((dogs) => {
-
-    for (var dog of dogs) {
-      if (dog.name.toUpperCase() === dogName.toUpperCase()) {
-        return dog;
-      }
-    }
-
-    return null;
+    return dogs.find((dog) => {
+      return (dog.name.toUpperCase() === dogName.toUpperCase());
+    });
   });
-
 };
 
-FitBark.prototype.getDogs = function(){
-
+FitBark.prototype.getDogs = function getDogs() {
   return this.fitBarkRepo.getDogRelations().then((dogRelations) => {
-    var dogs = [];
-    
-    if(!dogRelations){
+    const dogs = [];
+
+    if (!dogRelations) {
       return dogs;
     }
 
-    dogRelations = dogRelations.dog_relations;
-
-    for (var dogRelation of dogRelations) {
+    dogRelations.dog_relations.forEach((dogRelation) => {
       dogs.push(dogRelation.dog);
-    }
+    });
 
     return dogs;
   });
-
-}
-
+};
 
 module.exports = FitBark;
-
-
-
-
