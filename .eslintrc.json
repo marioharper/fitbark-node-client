@@ -7,6 +7,11 @@
     ],
     "rules": {
         "arrow-body-style": "off",
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js", "build/**/*.js", "**/*.spec.js"]}]
+        "import/no-extraneous-dependencies": ["error", {
+            "devDependencies": ["gulpfile.js","**/*.test.js", "build/**/*.js", "**/*.spec.js"]
+        }]
+    },
+    "env": {
+        "node": true
     }
 }

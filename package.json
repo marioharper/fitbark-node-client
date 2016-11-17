@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Node client for FitBark web API",
   "main": "src/fitBark.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marioharper/fitbark-node-client.git"
+  },
   "scripts": {
     "test": "gulp test-unit"
   },
@@ -17,6 +21,8 @@
     "request-promise": "^4.1.1"
   },
   "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
     "chai": "^3.5.0",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
