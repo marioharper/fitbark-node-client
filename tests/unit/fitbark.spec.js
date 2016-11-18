@@ -1,13 +1,12 @@
+/* eslint-disable global-require */
+/* eslint-disable no-undef */
 const chai = require('chai');
 const sinon = require('sinon');
 const Promise = require('bluebird');
 const mockery = require('mockery');
 
 const expect = chai.expect;
-/* eslint-disable global-require */
-/* eslint-disable no-undef */
 
-/* global describe */
 describe('using FitBark', () => {
   const sandbox = sinon.sandbox.create();
 
