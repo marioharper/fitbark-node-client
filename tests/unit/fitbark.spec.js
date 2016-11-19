@@ -8,9 +8,11 @@ const mockery = require('mockery');
 const expect = chai.expect;
 
 describe('using FitBark', () => {
-  const sandbox = sinon.sandbox.create();
+  let sandbox;
 
-  before(() => {
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+
     mockery.enable({
       useCleanCache: true,
       warnOnReplace: false,
@@ -18,18 +20,10 @@ describe('using FitBark', () => {
     });
   });
 
-  after(() => {
-    mockery.disable();
-  });
-
-  beforeEach(() => {
-    mockery.deregisterAll();
-    sandbox.restore();
-  });
-
   afterEach(() => {
+    sandbox.restore();
+    mockery.disable();
     mockery.deregisterAll();
-    mockery.resetCache();
   });
 
   describe('and calling getDog', () => {
@@ -54,9 +48,6 @@ describe('using FitBark', () => {
       });
     });
 
-    it('should return null', () => {
-      expect(true).to.equal(true);
-    });
     describe('and no dogs', () => {
       it('it should return null', () => {
         const getDogRelationsStub = sandbox.stub().returns(Promise.resolve({
@@ -73,7 +64,6 @@ describe('using FitBark', () => {
 
         const FitBark = require('../../src/fitBark');
         const fitBark = new FitBark('fake');
-
         return fitBark.getDog('julio').then(dog => expect(dog).to.equal(undefined));
       });
     });

@@ -7,9 +7,7 @@ module.exports = class FitBark {
 
   getDog(dogName) {
     return this.getDogs().then((dogs) => {
-      return dogs.find((dog) => {
-        return (dog.name.toUpperCase() === dogName.toUpperCase());
-      });
+      dogs.find(dog => (dog.name.toUpperCase() === dogName.toUpperCase()));
     });
   }
 
@@ -24,7 +22,7 @@ module.exports = class FitBark {
       dogRelations.dog_relations.forEach((dogRelation) => {
         dogs.push(dogRelation.dog);
       });
-
+      
       return dogs;
     });
   }
