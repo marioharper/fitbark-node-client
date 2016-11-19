@@ -2,7 +2,7 @@ const rp = require('request-promise');
 
 const API_BASE = 'https://app.fitbark.com/api/v2';
 
-exports.module = class FitBarkRepo {
+module.exports = class FitBarkRepo {
   constructor(apiToken) {
     this.API_TOKEN = apiToken;
   }
