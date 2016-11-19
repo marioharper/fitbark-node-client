@@ -22,7 +22,7 @@ module.exports = class FitBark {
       dogRelations.dog_relations.forEach((dogRelation) => {
         dogs.push(dogRelation.dog);
       });
-      
+
       return dogs;
     });
   }
