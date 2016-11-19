@@ -4,6 +4,6 @@ const outputRoot = 'dist/';
 
 module.exports = {
   src: `${srcRoot}**/*.js`,
-  dist: outputRoot,
+  output: outputRoot,
   unitTests: `${testRoot}unit/**/*.spec.js`,
 };

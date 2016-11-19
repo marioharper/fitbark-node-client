@@ -12,8 +12,7 @@
   },
   "scripts": {
     "test": "gulp test-unit",
-    "build": "gulp build-babel",
-    "prepublish": "npm run build"
+    "prepublish": "gulp build-babel"
   },
   "author": "Mario Harper",
   "license": "ISC",
