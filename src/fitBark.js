@@ -28,6 +28,9 @@ module.exports = class FitBark {
   }
 
   getActivitySeries(slug, from, to, resolution) {
-    return this.fitBarkRepo.getActivitySeries({ slug, from, to, resolution });
+    return this.fitBarkRepo.getActivitySeries({ slug, from, to, resolution })
+      .then((activitySeries) => {
+        return activitySeries.activity_series.records;
+      });
   }
 };

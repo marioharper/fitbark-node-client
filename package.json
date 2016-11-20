@@ -1,6 +1,6 @@
 {
   "name": "fitbark-node-client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Node client for FitBark web API",
   "engines": {
     "node": "6.9.1"

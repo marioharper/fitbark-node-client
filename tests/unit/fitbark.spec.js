@@ -93,7 +93,11 @@ describe('using FitBark', () => {
 
   describe('and calling getActivitySeries', () => {
     it('it should call repo getActivitySeries', () => {
-      const getActivitySeriesStub = sandbox.stub().returns(Promise.resolve());
+      const getActivitySeriesStub = sandbox.stub().returns(Promise.resolve({
+        activity_series: {
+          records: [],
+        },
+      }));
 
       const fitBarkRepo = function fitBarkRepo() {
         return {
@@ -113,6 +117,43 @@ describe('using FitBark', () => {
 
       return fitBark.getActivitySeries(slug, from, to, resolution).then(() => {
         expect(getActivitySeriesStub.calledWith({ slug, from, to, resolution })).to.equal(true);
+      });
+    });
+
+    it('it should return activities', () => {
+      const activityRecordsMock = [{
+        date: '2016-02-20',
+        activity_value: 13522,
+        min_play: 157,
+        min_active: 473,
+        min_rest: 810,
+        daily_target: 1091,
+        has_trophy: 0,
+        activity_average: 37505,
+      }];
+      const getActivitySeriesStub = sandbox.stub().returns(Promise.resolve({
+        activity_series: {
+          records: activityRecordsMock,
+        },
+      }));
+
+      const fitBarkRepo = function fitBarkRepo() {
+        return {
+          getActivitySeries: getActivitySeriesStub,
+        };
+      };
+      mockery.registerMock('./fitBarkRepo', fitBarkRepo);
+
+      const FitBark = require('../../src/fitBark');
+      const fitBark = new FitBark('fake');
+
+      const slug = 'test-slug';
+      const from = '2015-09-09';
+      const to = '2015-09-10';
+      const resolution = 'DAILY';
+
+      return fitBark.getActivitySeries(slug, from, to, resolution).then((activities) => {
+        expect(activities).to.equal(activityRecordsMock);
       });
     });
   });
