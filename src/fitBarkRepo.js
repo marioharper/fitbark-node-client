@@ -18,4 +18,26 @@ module.exports = class FitBarkRepo {
 
     return rp(options);
   }
+
+  getActivitySeries({ slug, from, to, resolution }) {
+    const options = {
+      method: 'POST',
+      uri: `${API_BASE}/activity_series`,
+      headers: {
+        authorization: `Bearer ${this.API_TOKEN}`,
+        'content-type': 'application/json',
+      },
+      json: true,
+      body: {
+        activity_series: {
+          slug,
+          from,
+          to,
+          resolution,
+        },
+      },
+    };
+
+    return rp(options);
+  }
 };

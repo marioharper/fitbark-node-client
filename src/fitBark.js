@@ -26,4 +26,8 @@ module.exports = class FitBark {
       return dogs;
     });
   }
+
+  getActivitySeries(slug, from, to, resolution) {
+    return this.fitBarkRepo.getActivitySeries({ slug, from, to, resolution });
+  }
 };

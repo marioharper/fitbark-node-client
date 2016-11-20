@@ -90,4 +90,30 @@ describe('using FitBark', () => {
       });
     });
   });
+
+  describe('and calling getActivitySeries', () => {
+    it('it should call repo getActivitySeries', () => {
+      const getActivitySeriesStub = sandbox.stub().returns(Promise.resolve());
+
+      const fitBarkRepo = function fitBarkRepo() {
+        return {
+          getActivitySeries: getActivitySeriesStub,
+        };
+      };
+
+      mockery.registerMock('./fitBarkRepo', fitBarkRepo);
+
+      const FitBark = require('../../src/fitBark');
+      const fitBark = new FitBark('fake');
+
+      const slug = 'test-slug';
+      const from = '2015-09-09';
+      const to = '2015-09-10';
+      const resolution = 'DAILY';
+
+      return fitBark.getActivitySeries(slug, from, to, resolution).then(() => {
+        expect(getActivitySeriesStub.calledWith({ slug, from, to, resolution })).to.equal(true);
+      });
+    });
+  });
 });
