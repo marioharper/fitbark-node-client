@@ -86,7 +86,7 @@ describe('using FitBark', () => {
         const FitBark = require('../../src/fitBark');
         const fitBark = new FitBark('fake-token');
 
-        return fitBark.getDog('Barley').then(dog => expect(dog).to.not.equal(null));
+        return fitBark.getDog('Barley').then(dog => expect(dog).to.not.equal(undefined));
       });
     });
   });

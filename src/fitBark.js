@@ -7,7 +7,7 @@ module.exports = class FitBark {
 
   getDog(dogName) {
     return this.getDogs().then((dogs) => {
-      dogs.find(dog => (dog.name.toUpperCase() === dogName.toUpperCase()));
+      return dogs.find(dog => (dog.name.toUpperCase() === dogName.toUpperCase()));
     });
   }
 
